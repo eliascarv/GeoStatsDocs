@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Can I access the raw coordinates? · GeoStats.jl</title><meta name="title" content="Can I access the raw coordinates? · GeoStats.jl"/><meta property="og:title" content="Can I access the raw coordinates? · GeoStats.jl"/><meta property="twitter:title" content="Can I access the raw coordinates? · GeoStats.jl"/><meta name="description" content="Documentation for GeoStats.jl."/><meta property="og:description" content="Documentation for GeoStats.jl."/><meta property="twitter:description" content="Documentation for GeoStats.jl."/><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../search_index.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script><link href="../../assets/favicon.ico" rel="icon" type="image/x-icon"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.svg" alt="GeoStats.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">GeoStats.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../">Home</a></li><li><a class="tocitem" href="../../quickstart/">Quickstart</a></li><li><span class="tocitem">Reference guide</span><ul><li><a class="tocitem" href="../../data/">Data</a></li><li><a class="tocitem" href="../../domains/">Domains</a></li><li><a class="tocitem" href="../../transforms/">Transforms</a></li><li><input class="collapse-toggle" id="menuitem-3-4" type="checkbox"/><label class="tocitem" for="menuitem-3-4"><span class="docs-label">Grouping</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../clustering/">Clustering</a></li><li><a class="tocitem" href="../../partitioning/">Partitioning</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-3-5" type="checkbox"/><label class="tocitem" for="menuitem-3-5"><span class="docs-label">Modeling</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../interpolation/">Interpolation</a></li><li><a class="tocitem" href="../../simulation/">Simulation</a></li><li><a class="tocitem" href="../../learning/">Learning</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-3-6" type="checkbox"/><label class="tocitem" for="menuitem-3-6"><span class="docs-label">Functions</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../functions/">Overview</a></li><li><a class="tocitem" href="../../variograms/">Variograms</a></li><li><a class="tocitem" href="../../covariances/">Covariances</a></li><li><a class="tocitem" href="../../transiograms/">Transiograms</a></li></ul></li><li><input class="collapse-toggle" id="menuitem-3-7" type="checkbox"/><label class="tocitem" for="menuitem-3-7"><span class="docs-label">Processes</span><i class="docs-chevron"></i></label><ul class="collapsed"><li><a class="tocitem" href="../../fieldprocs/">Field processes</a></li><li><a class="tocitem" href="../../pointprocs/">Point processes</a></li></ul></li><li><a class="tocitem" href="../../statistics/">Statistics</a></li><li><a class="tocitem" href="../../queries/">Queries</a></li><li><a class="tocitem" href="../../validation/">Validation</a></li><li><a class="tocitem" href="../../visualization/">Visualization</a></li></ul></li><li><span class="tocitem">Frequent questions</span><ul><li><a class="tocitem" href="../rasters/">How to work with &quot;rasters&quot;?</a></li><li class="is-active"><a class="tocitem" href>Can I access the raw coordinates?</a><ul class="internal"><li><a class="tocitem" href="#Rigid-motion"><span>Rigid motion</span></a></li><li><a class="tocitem" href="#Projections"><span>Projections</span></a></li><li><a class="tocitem" href="#Raw-coordinates"><span>Raw coordinates</span></a></li></ul></li><li><a class="tocitem" href="../interpolation/">Why Kriging interpolation is slow?</a></li></ul></li><li><a class="tocitem" href="../../contributing/">Contributing</a></li><li><span class="tocitem">Resources</span><ul><li><a class="tocitem" href="../../resources/education/">Education</a></li><li><a class="tocitem" href="../../resources/publications/">Publications</a></li><li><a class="tocitem" href="../../resources/ecosystem/">Ecosystem</a></li></ul></li><li><span class="tocitem">About</span><ul><li><a class="tocitem" href="../../about/community/">Community</a></li><li><a class="tocitem" href="../../about/license/">License</a></li><li><a class="tocitem" href="../../about/citing/">Citing</a></li></ul></li><li><a class="tocitem" href="../../links/">Index</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Frequent questions</a></li><li class="is-active"><a href>Can I access the raw coordinates?</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Can I access the raw coordinates?</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/JuliaEarth/GeoStats.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/JuliaEarth/GeoStats.jl/blob/master/docs/src/faq/coords.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Can-I-access-the-raw-coordinates?"><a class="docs-heading-anchor" href="#Can-I-access-the-raw-coordinates?">Can I access the raw coordinates?</a><a id="Can-I-access-the-raw-coordinates?-1"></a><a class="docs-heading-anchor-permalink" href="#Can-I-access-the-raw-coordinates?" title="Permalink"></a></h1><p>Access to the raw coordinates of geometries stored in the <code>geometry</code> column is discouraged. If you make good use of the high-level transforms provided by the framework, you will be more productive.</p><h2 id="Rigid-motion"><a class="docs-heading-anchor" href="#Rigid-motion">Rigid motion</a><a id="Rigid-motion-1"></a><a class="docs-heading-anchor-permalink" href="#Rigid-motion" title="Permalink"></a></h2><p>Coordinates are often called for when the application requires rigid motion. We provide optimized <code>Translate</code>, <code>Rotate</code> and <code>Scale</code> transforms for that purpose:</p><pre><code class="language-julia hljs">data = georef((; z=rand(1000, 1000)))</code></pre><div>
+  <div style = "float: right; font-style: italic;">
+    <span>999990 rows omitted</span>
+  </div>
+  <div style = "clear: both;"></div>
+</div>
+<table>
+  <thead>
+    <tr class = "title">
+      <td colspan = "2" style = "font-size: 14px; text-align: center;">1000000×2 GeoTable over 1000×1000 CartesianGrid</td>
+    </tr>
+    <tr class = "columnLabelRow">
+      <th style = "font-weight: bold; text-align: center;"><span style="font-weight: 700; color: #98aa7a">z</span></th>
+      <th style = "font-weight: bold; text-align: center;"><span style="font-weight: 700; color: #008080">geometry</span></th>
+    </tr>
+    <tr class = "columnLabelRow">
+      <th style = "text-align: center;">Continuous</th>
+      <th style = "text-align: center;">Quadrangle</th>
+    </tr>
+    <tr class = "columnLabelRow">
+      <th style = "text-align: center;">[NoUnits]</th>
+      <th style = "text-align: center;">🖈 Cartesian{NoDatum}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.540654</td>
+      <td style = "text-align: center;">Quadrangle((x: 0.0 m, y: 0.0 m), ..., (x: 0.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.0175379</td>
+      <td style = "text-align: center;">Quadrangle((x: 1.0 m, y: 0.0 m), ..., (x: 1.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.314766</td>
+      <td style = "text-align: center;">Quadrangle((x: 2.0 m, y: 0.0 m), ..., (x: 2.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.908066</td>
+      <td style = "text-align: center;">Quadrangle((x: 3.0 m, y: 0.0 m), ..., (x: 3.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.484559</td>
+      <td style = "text-align: center;">Quadrangle((x: 4.0 m, y: 0.0 m), ..., (x: 4.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.413643</td>
+      <td style = "text-align: center;">Quadrangle((x: 5.0 m, y: 0.0 m), ..., (x: 5.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.3944</td>
+      <td style = "text-align: center;">Quadrangle((x: 6.0 m, y: 0.0 m), ..., (x: 6.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.953505</td>
+      <td style = "text-align: center;">Quadrangle((x: 7.0 m, y: 0.0 m), ..., (x: 7.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.121745</td>
+      <td style = "text-align: center;">Quadrangle((x: 8.0 m, y: 0.0 m), ..., (x: 8.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.699979</td>
+      <td style = "text-align: center;">Quadrangle((x: 9.0 m, y: 0.0 m), ..., (x: 9.0 m, y: 1.0 m))</td>
+    </tr>
+    <tr>
+      <td style = "text-align: center;">&vellip;</td>
+      <td style = "text-align: center;">&vellip;</td>
+    </tr>
+  </tbody>
+</table><pre><code class="language-julia hljs">data |&gt; Translate(10u&quot;m&quot;, 8u&quot;ft&quot;)</code></pre><div>
+  <div style = "float: right; font-style: italic;">
+    <span>999990 rows omitted</span>
+  </div>
+  <div style = "clear: both;"></div>
+</div>
+<table>
+  <thead>
+    <tr class = "title">
+      <td colspan = "2" style = "font-size: 14px; text-align: center;">1000000×2 GeoTable over 1000×1000 CartesianGrid</td>
+    </tr>
+    <tr class = "columnLabelRow">
+      <th style = "font-weight: bold; text-align: center;"><span style="font-weight: 700; color: #98aa7a">z</span></th>
+      <th style = "font-weight: bold; text-align: center;"><span style="font-weight: 700; color: #008080">geometry</span></th>
+    </tr>
+    <tr class = "columnLabelRow">
+      <th style = "text-align: center;">Continuous</th>
+      <th style = "text-align: center;">Quadrangle</th>
+    </tr>
+    <tr class = "columnLabelRow">
+      <th style = "text-align: center;">[NoUnits]</th>
+      <th style = "text-align: center;">🖈 Cartesian{NoDatum}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.540654</td>
+      <td style = "text-align: center;">Quadrangle((x: 10.0 m, y: 2.4384 m), ..., (x: 10.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.0175379</td>
+      <td style = "text-align: center;">Quadrangle((x: 11.0 m, y: 2.4384 m), ..., (x: 11.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.314766</td>
+      <td style = "text-align: center;">Quadrangle((x: 12.0 m, y: 2.4384 m), ..., (x: 12.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.908066</td>
+      <td style = "text-align: center;">Quadrangle((x: 13.0 m, y: 2.4384 m), ..., (x: 13.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.484559</td>
+      <td style = "text-align: center;">Quadrangle((x: 14.0 m, y: 2.4384 m), ..., (x: 14.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.413643</td>
+      <td style = "text-align: center;">Quadrangle((x: 15.0 m, y: 2.4384 m), ..., (x: 15.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.3944</td>
+      <td style = "text-align: center;">Quadrangle((x: 16.0 m, y: 2.4384 m), ..., (x: 16.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.953505</td>
+      <td style = "text-align: center;">Quadrangle((x: 17.0 m, y: 2.4384 m), ..., (x: 17.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.121745</td>
+      <td style = "text-align: center;">Quadrangle((x: 18.0 m, y: 2.4384 m), ..., (x: 18.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.699979</td>
+      <td style = "text-align: center;">Quadrangle((x: 19.0 m, y: 2.4384 m), ..., (x: 19.0 m, y: 3.4384 m))</td>
+    </tr>
+    <tr>
+      <td style = "text-align: center;">&vellip;</td>
+      <td style = "text-align: center;">&vellip;</td>
+    </tr>
+  </tbody>
+</table><h2 id="Projections"><a class="docs-heading-anchor" href="#Projections">Projections</a><a id="Projections-1"></a><a class="docs-heading-anchor-permalink" href="#Projections" title="Permalink"></a></h2><p>Map projections are examples of coordinate transforms. The <code>Proj</code> function can be used to &quot;reproject&quot; a <code>GeoTable</code> into a new coordinate reference system (<code>CRS</code>):</p><pre><code class="language-julia hljs">data |&gt; Proj(Polar)</code></pre><div>
+  <div style = "float: right; font-style: italic;">
+    <span>999990 rows omitted</span>
+  </div>
+  <div style = "clear: both;"></div>
+</div>
+<table>
+  <thead>
+    <tr class = "title">
+      <td colspan = "2" style = "font-size: 14px; text-align: center;">1000000×2 GeoTable over 1000×1000 TransformedGrid</td>
+    </tr>
+    <tr class = "columnLabelRow">
+      <th style = "font-weight: bold; text-align: center;"><span style="font-weight: 700; color: #98aa7a">z</span></th>
+      <th style = "font-weight: bold; text-align: center;"><span style="font-weight: 700; color: #008080">geometry</span></th>
+    </tr>
+    <tr class = "columnLabelRow">
+      <th style = "text-align: center;">Continuous</th>
+      <th style = "text-align: center;">Quadrangle</th>
+    </tr>
+    <tr class = "columnLabelRow">
+      <th style = "text-align: center;">[NoUnits]</th>
+      <th style = "text-align: center;">🖈 Polar{NoDatum}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.540654</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 0.0 m, ϕ: 0.0 rad), ..., (ρ: 1.0 m, ϕ: 1.5708 rad))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.0175379</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 1.0 m, ϕ: 0.0 rad), ..., (ρ: 1.41421 m, ϕ: 0.785398 rad))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.314766</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 2.0 m, ϕ: 0.0 rad), ..., (ρ: 2.23607 m, ϕ: 0.463648 rad))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.908066</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 3.0 m, ϕ: 0.0 rad), ..., (ρ: 3.16228 m, ϕ: 0.321751 rad))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.484559</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 4.0 m, ϕ: 0.0 rad), ..., (ρ: 4.12311 m, ϕ: 0.244979 rad))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.413643</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 5.0 m, ϕ: 0.0 rad), ..., (ρ: 5.09902 m, ϕ: 0.197396 rad))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.3944</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 6.0 m, ϕ: 0.0 rad), ..., (ρ: 6.08276 m, ϕ: 0.165149 rad))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.953505</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 7.0 m, ϕ: 0.0 rad), ..., (ρ: 7.07107 m, ϕ: 0.141897 rad))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.121745</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 8.0 m, ϕ: 0.0 rad), ..., (ρ: 8.06226 m, ϕ: 0.124355 rad))</td>
+    </tr>
+    <tr class = "dataRow">
+      <td style = "text-align: center;">0.699979</td>
+      <td style = "text-align: center;">Quadrangle((ρ: 9.0 m, ϕ: 0.0 rad), ..., (ρ: 9.05539 m, ϕ: 0.110657 rad))</td>
+    </tr>
+    <tr>
+      <td style = "text-align: center;">&vellip;</td>
+      <td style = "text-align: center;">&vellip;</td>
+    </tr>
+  </tbody>
+</table><h2 id="Raw-coordinates"><a class="docs-heading-anchor" href="#Raw-coordinates">Raw coordinates</a><a id="Raw-coordinates-1"></a><a class="docs-heading-anchor-permalink" href="#Raw-coordinates" title="Permalink"></a></h2><p>If you really need access to the coordinates, use the <code>coords</code> function:</p><pre><code class="language-julia hljs">quad = data.geometry[1]</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Quadrangle
+├─ Point(x: 0.0 m, y: 0.0 m)
+├─ Point(x: 1.0 m, y: 0.0 m)
+├─ Point(x: 1.0 m, y: 1.0 m)
+└─ Point(x: 0.0 m, y: 1.0 m)</code></pre><pre><code class="language-julia hljs">point = centroid(quad)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Point with Cartesian{NoDatum} coordinates
+├─ x: 0.5 m
+└─ y: 0.5 m</code></pre><pre><code class="language-julia hljs">coords(point)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Cartesian{NoDatum} coordinates
+├─ x: 0.5 m
+└─ y: 0.5 m</code></pre><p>It returns a <code>CRS</code> object. The type of this object can be retrieved with the <code>crs</code> function, which works with any <code>GeoTable</code>, geospatial <code>Domain</code> or individual <code>Geometry</code>:</p><pre><code class="language-julia hljs">crs(data)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Cartesian2D{NoDatum, Quantity{Float64, 𝐋, FreeUnits{(m,), 𝐋, nothing}}}<span class="sgr90"> (alias for Cartesian{NoDatum, 2, Quantity{Float64, 𝐋, Unitful.FreeUnits{(m,), 𝐋, nothing}}})</span></code></pre><p>Very often the coordinates are <code>LatLon</code> in degrees. These cannot be used in linear algebra routines. The function <code>to</code> converts any <code>CRS</code> object into a static vector with <code>Cartesian</code> coordinates for algebraic manipulation:</p><pre><code class="language-julia hljs">to(Point(LatLon(0, 0)))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Vec(6.378137e6 m, 0.0 m, 0.0 m)</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../rasters/">« How to work with &quot;rasters&quot;?</a><a class="docs-footer-nextpage" href="../interpolation/">Why Kriging interpolation is slow? »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Friday 19 June 2026 14:23">Friday 19 June 2026</span>. Using Julia version 1.12.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
